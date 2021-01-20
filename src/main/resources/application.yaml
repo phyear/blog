@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/blog?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true
+    username: root
+    password: 12345
+  liquibase:
+    enabled: true
+mybatis:
+  mapperLocations: classpath*:/mapper/*.xml
+server:
+  port: 10000
+logging:
+  level:
+    com.code.report.blog: debug
