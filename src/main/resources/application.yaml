@@ -8,7 +8,7 @@ spring:
 mybatis:
   mapperLocations: classpath*:/mapper/*.xml
 server:
-  port: 10000
+  port: 18000
 logging:
   level:
     com.code.report.blog: debug
