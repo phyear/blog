@@ -5,6 +5,10 @@ spring:
     password: 12345
   liquibase:
     enabled: true
+  jackson:
+    default-property-inclusion: ALWAYS
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
 mybatis:
   mapperLocations: classpath*:/mapper/*.xml
 server:
