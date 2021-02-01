@@ -4,9 +4,7 @@ import com.code.report.blog.infra.dto.ArticleDTO;
 import com.code.report.blog.serivce.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +21,10 @@ public class ArticleController {
     @GetMapping
     public ResponseEntity<List<ArticleDTO>> list(){
         return ResponseEntity.ok(articleService.selectAll());
+    }
+
+    @PostMapping
+    public ResponseEntity<ArticleDTO> create(@RequestBody ArticleDTO articleDTO){
+        return ResponseEntity.ok(articleService.save(articleDTO));
     }
 }
