@@ -36,3 +36,4 @@ jobs:
           repository: codereporter/blog
           tag_with_sha: false
           context: .
+          tags: codereporter/blog:v1
