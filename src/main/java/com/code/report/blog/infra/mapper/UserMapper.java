@@ -3,6 +3,7 @@ package com.code.report.blog.infra.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.code.report.blog.infra.dto.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @author zhaotianxin
@@ -10,4 +11,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface UserMapper extends BaseMapper<UserDTO> {
+    UserDTO selectByLoginName(@Param("name") String name);
 }

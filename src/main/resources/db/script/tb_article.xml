@@ -17,4 +17,12 @@
            <column name="last_update_date" type="DATETIME" defaultValueComputed="CURRENT_TIMESTAMP" remarks="更新时间"/>
        </createTable>
     </changeSet>
+
+    <changeSet id="2020-02-01-tb-article-add-column" author="ztxemail@163.com">
+         <addColumn tableName="tb_article">
+             <column name="type" type="VARCHAR(255)" remarks="标题">
+                 <constraints  nullable="false"/>
+             </column>
+         </addColumn>
+    </changeSet>
 </databaseChangeLog>

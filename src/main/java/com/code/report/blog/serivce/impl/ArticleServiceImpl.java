@@ -1,6 +1,9 @@
 package com.code.report.blog.serivce.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.code.report.blog.controller.vo.ArticleVO;
 import com.code.report.blog.infra.dto.ArticleDTO;
 import com.code.report.blog.infra.exception.CommonException;
 import com.code.report.blog.infra.mapper.ArticleMapper;
@@ -8,6 +11,7 @@ import com.code.report.blog.serivce.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
@@ -29,10 +33,16 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public ArticleDTO save(ArticleDTO articleDTO) {
-        return baseCreate(articleDTO);
+        if(ObjectUtils.isEmpty(articleDTO.getId())){
+            articleDTO.setVersionNumber(1L);
+            return baseCreate(articleDTO);
+        }
+        else {
+            return baseUpdate(articleDTO);
+        }
     }
 
-    private ArticleDTO baseCreate(ArticleDTO articleDTO){
+    private ArticleDTO baseCreate(ArticleDTO articleDTO) {
         if (articleMapper.insert(articleDTO) != 1) {
             throw new CommonException("error.insert.article");
         }
@@ -44,7 +54,7 @@ public class ArticleServiceImpl implements ArticleService {
         return baseUpdate(articleDTO);
     }
 
-    private ArticleDTO baseUpdate(ArticleDTO articleDTO){
+    private ArticleDTO baseUpdate(ArticleDTO articleDTO) {
         if (articleMapper.updateById(articleDTO) != 1) {
             throw new CommonException("error.update.article");
         }
@@ -54,6 +64,18 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void delete(Long id) {
-        articleMapper.deleteById(id);
+        if (articleMapper.deleteById(id) != 1) {
+            throw new CommonException("error.delete.article");
+        }
+    }
+
+    @Override
+    public IPage<ArticleVO> page(Page page) {
+        return articleMapper.selectPage(page, null);
+    }
+
+    @Override
+    public ArticleDTO queryById(Long id) {
+        return articleMapper.selectById(id);
     }
 }

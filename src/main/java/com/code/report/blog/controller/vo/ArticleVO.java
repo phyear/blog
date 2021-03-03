@@ -1,17 +1,12 @@
-package com.code.report.blog.infra.dto;
-
-
-import com.baomidou.mybatisplus.annotation.*;
+package com.code.report.blog.controller.vo;
 
 import java.util.Date;
 
 /**
  * @author zhaotianxin
- * @date 2021-01-19 20:11
+ * @date 2021-02-01 11:29
  */
-@TableName(value = "tb_article")
-public class ArticleDTO {
-    @TableId(type = IdType.AUTO)
+public class ArticleVO {
     private Long id;
 
     private String title;
@@ -20,21 +15,11 @@ public class ArticleDTO {
 
     private String type;
 
-    @Version
-    @TableField(fill = FieldFill.INSERT)
     private Long versionNumber;
 
     private Date createdDate;
 
     private Date lastUpdateDate;
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public Long getId() {
         return id;
@@ -60,6 +45,22 @@ public class ArticleDTO {
         this.content = content;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Long getVersionNumber() {
+        return versionNumber;
+    }
+
+    public void setVersionNumber(Long versionNumber) {
+        this.versionNumber = versionNumber;
+    }
+
     public Date getCreatedDate() {
         return createdDate;
     }
@@ -74,13 +75,5 @@ public class ArticleDTO {
 
     public void setLastUpdateDate(Date lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
-    }
-
-    public Long getVersionNumber() {
-        return versionNumber;
-    }
-
-    public void setVersionNumber(Long versionNumber) {
-        this.versionNumber = versionNumber;
     }
 }
