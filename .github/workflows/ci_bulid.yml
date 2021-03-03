@@ -1,24 +1,38 @@
-# This workflow will build a Java project with Maven
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
 name: CI
 
+# Controls when the action will run. 
 on:
+  # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build:
-
+  docker:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
-    - name: Build with Maven
-      run: mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+      - name: pull code
+        uses: actions/checkout@v2
+      - name: operate java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: bulid
+        run:
+          # 执行mvn打包
+          mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+      # 使用Docker官方制作的action
+      # https://github.com/marketplace/actions/build-and-push-docker-images
+      - name: bulid and push image
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{secrets.DOCKER_USERNAME}}
+          password: ${{secrets.DOCKER_PASSWORD}}
+          repository: codereporter/blog
+          tag_with_sha: true
+          context: .
