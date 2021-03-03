@@ -9,6 +9,10 @@ spring:
     default-property-inclusion: ALWAYS
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
+  redis:
+    port: ${REDIS_PORT:6379}
+    host: ${REDIS_HOST:127.0.0.1}
+    database: 1
 mybatis:
   mapperLocations: classpath*:/mapper/*.xml
 server:
