@@ -26,20 +26,17 @@ jobs:
         run:
           # 执行mvn打包
           mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-  docker:
-     runs-on: ubuntu-latest
-     needs: bulid
-     steps:
-        - name: Login to Docker Hub
-          uses: docker/login-action@v1
-          with: 
-            username: codereporter
-            password: z19951012tx
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with: 
+            username: ${{ secrets.DOCKER_USERNAME }}
+            password: ${{ secrets.DOCKER_PASEEWORD }}
         # 使用Docker官方制作的action
         # https://github.com/marketplace/actions/build-and-push-docker-images
-        - name: bulid and push image
-          uses: docker/build-push-action@v2
-          with:
+      - name: bulid and push image
+        uses: docker/build-push-action@v2
+        with:
             context: ./
             tags: codereporter/blog:latest
-            push: true
+            push: true    
+        
