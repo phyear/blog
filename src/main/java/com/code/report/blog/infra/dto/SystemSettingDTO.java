@@ -10,7 +10,7 @@ import javax.persistence.Table;
  * @date 2021-01-20 14:44
  */
 @Table(name = "system_setting")
-public class SystemSettingDTO {
+public class SystemSettingDTO extends CommonDTO {
     @Id
     @GeneratedValue(generator  = "JDBC")
     private Long id;

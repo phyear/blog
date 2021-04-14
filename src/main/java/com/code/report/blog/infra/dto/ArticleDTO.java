@@ -14,7 +14,7 @@ import java.util.Date;
  * @date 2021-01-19 20:11
  */
 @Table(name = "tb_article")
-public class ArticleDTO {
+public class ArticleDTO extends CommonDTO {
     @Id
     @GeneratedValue(generator  = "JDBC")
     private Long id;

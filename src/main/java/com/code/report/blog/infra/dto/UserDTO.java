@@ -3,7 +3,6 @@ package com.code.report.blog.infra.dto;
 import tk.mybatis.mapper.annotation.Version;
 
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,7 +11,7 @@ import javax.persistence.Table;
  * @date 2021-01-19 20:11
  */
 @Table(name = "fd_user")
-public class UserDTO {
+public class UserDTO extends CommonDTO{
     @Id
     @GeneratedValue(generator  = "JDBC")
     private Long id;

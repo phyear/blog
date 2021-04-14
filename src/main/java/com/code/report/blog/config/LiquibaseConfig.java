@@ -17,10 +17,8 @@ public class LiquibaseConfig {
     public SpringLiquibase liquibase(DataSource dataSource) {
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setDataSource(dataSource);
-        //指定changelog的位置，这里使用的一个master文件引用其他文件的方式
-        liquibase.setChangeLog("classpath:/master.xml");
-        liquibase.setContexts("development,test,production");
-        liquibase.setShouldRun(true);
+        // liquibase.setDefaultSchema(DEFAULT_SCHEMA);
+        liquibase.setChangeLog("classpath:changelog.groovy");
         return liquibase;
     }
 
