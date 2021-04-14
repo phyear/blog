@@ -1,16 +1,21 @@
 package com.code.report.blog.serivce.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.code.report.blog.controller.vo.ArticleVO;
 import com.code.report.blog.infra.dto.ArticleDTO;
 import com.code.report.blog.infra.exception.CommonException;
 import com.code.report.blog.infra.mapper.ArticleMapper;
 import com.code.report.blog.serivce.ArticleService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 import java.util.List;
@@ -24,20 +29,20 @@ import java.util.List;
 public class ArticleServiceImpl implements ArticleService {
     @Autowired
     private ArticleMapper articleMapper;
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Override
     public List<ArticleDTO> selectAll() {
-        QueryWrapper<ArticleDTO> queryWrapper = new QueryWrapper<>();
-        return articleMapper.selectList(queryWrapper);
+        return articleMapper.selectAll();
     }
 
     @Override
     public ArticleDTO save(ArticleDTO articleDTO) {
-        if(ObjectUtils.isEmpty(articleDTO.getId())){
+        if (ObjectUtils.isEmpty(articleDTO.getId())) {
             articleDTO.setVersionNumber(1L);
             return baseCreate(articleDTO);
-        }
-        else {
+        } else {
             return baseUpdate(articleDTO);
         }
     }
@@ -55,7 +60,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     private ArticleDTO baseUpdate(ArticleDTO articleDTO) {
-        if (articleMapper.updateById(articleDTO) != 1) {
+        if (articleMapper.updateByPrimaryKey(articleDTO) != 1) {
             throw new CommonException("error.update.article");
         }
         return articleDTO;
@@ -64,18 +69,28 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void delete(Long id) {
-        if (articleMapper.deleteById(id) != 1) {
+        if (articleMapper.deleteByPrimaryKey(id) != 1) {
             throw new CommonException("error.delete.article");
         }
     }
 
     @Override
-    public IPage<ArticleVO> page(Page page) {
-        return articleMapper.selectPage(page, null);
+    public PageInfo<ArticleVO> page(int page, int size) {
+        PageInfo<ArticleDTO> pageInfo = PageHelper.startPage(page, size).doSelectPageInfo(() -> articleMapper.selectAll());
+        if (CollectionUtils.isEmpty(pageInfo.getList())) {
+            return new PageInfo<>();
+        }
+        PageInfo<ArticleVO> map = new PageInfo<>();
+        BeanUtils.copyProperties(pageInfo, map);
+        List<ArticleDTO> result = pageInfo.getList();
+        List<ArticleVO> articleVOS = modelMapper.map(result, new TypeToken<List<ArticleVO>>() {
+        }.getType());
+        map.setList(articleVOS);
+        return map;
     }
 
     @Override
     public ArticleDTO queryById(Long id) {
-        return articleMapper.selectById(id);
+        return articleMapper.selectByPrimaryKey(id);
     }
 }

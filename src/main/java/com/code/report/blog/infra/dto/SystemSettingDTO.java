@@ -1,16 +1,18 @@
 package com.code.report.blog.infra.dto;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @author zhaotianxin
  * @date 2021-01-20 14:44
  */
-@TableName(value = "system_setting")
+@Table(name = "system_setting")
 public class SystemSettingDTO {
-    @TableId(type = IdType.AUTO)
+    @Id
+    @GeneratedValue(generator  = "JDBC")
     private Long id;
 
     private String siteName;

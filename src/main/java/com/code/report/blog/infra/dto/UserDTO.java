@@ -1,13 +1,20 @@
 package com.code.report.blog.infra.dto;
-import com.baomidou.mybatisplus.annotation.*;
+
+import tk.mybatis.mapper.annotation.Version;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @author zhaotianxin
  * @date 2021-01-19 20:11
  */
-@TableName(value = "fd_user")
+@Table(name = "fd_user")
 public class UserDTO {
-    @TableId(type = IdType.AUTO)
+    @Id
+    @GeneratedValue(generator  = "JDBC")
     private Long id;
 
     private String loginName;
@@ -17,7 +24,6 @@ public class UserDTO {
     private String password;
 
     @Version
-    @TableField(fill = FieldFill.INSERT)
     private Long versionNumber;
 
     public Long getId() {

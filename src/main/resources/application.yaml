@@ -15,6 +15,10 @@ spring:
     database: 1
 mybatis:
   mapperLocations: classpath*:/mapper/*.xml
+mapper:
+  mappers:
+    - tk.mybatis.mapper.common.Mapper
+  not-empty: true
 server:
   port: 18000
 logging:

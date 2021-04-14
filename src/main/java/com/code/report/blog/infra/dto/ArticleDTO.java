@@ -1,17 +1,22 @@
 package com.code.report.blog.infra.dto;
 
 
-import com.baomidou.mybatisplus.annotation.*;
 
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
  * @author zhaotianxin
  * @date 2021-01-19 20:11
  */
-@TableName(value = "tb_article")
+@Table(name = "tb_article")
 public class ArticleDTO {
-    @TableId(type = IdType.AUTO)
+    @Id
+    @GeneratedValue(generator  = "JDBC")
     private Long id;
 
     private String title;
@@ -20,8 +25,6 @@ public class ArticleDTO {
 
     private String type;
 
-    @Version
-    @TableField(fill = FieldFill.INSERT)
     private Long versionNumber;
 
     private Date createdDate;
