@@ -1,12 +1,13 @@
 package com.code.report.blog.controller;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.code.report.blog.annotation.VerifyToken;
 import com.code.report.blog.controller.vo.ArticleVO;
 import com.code.report.blog.infra.dto.ArticleDTO;
 import com.code.report.blog.serivce.ArticleService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,10 +34,10 @@ public class ArticleController {
         return ResponseEntity.ok(articleService.save(articleDTO));
     }
 
-    @VerifyToken
+    @VerifyToken(verify = false)
     @GetMapping("/page")
-    public ResponseEntity<IPage<ArticleVO>> pageList(Page page){
-        return ResponseEntity.ok(articleService.page(page));
+    public ResponseEntity<PageInfo<ArticleVO>> pageList(int page, int size){
+        return ResponseEntity.ok(articleService.page(page,size));
     }
 
     @DeleteMapping("/{id}")
