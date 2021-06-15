@@ -7,17 +7,13 @@ import com.code.report.blog.infra.exception.CommonException;
 import com.code.report.blog.infra.mapper.ArticleMapper;
 import com.code.report.blog.infra.mapper.ArticleVisitsMapper;
 import com.code.report.blog.infra.util.RedisCountUtils;
-import com.code.report.blog.infra.util.RedisUtil;
-import com.code.report.blog.infra.util.SpringUtil;
 import com.code.report.blog.serivce.ArticleService;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.page.PageMethod;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -86,7 +82,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public PageInfo<ArticleVO> page(int page, int size) {
-        PageInfo<ArticleDTO> pageInfo = PageHelper.startPage(page, size).doSelectPageInfo(() -> articleMapper.selectAllArticle(true));
+        PageInfo<ArticleDTO> pageInfo = PageMethod.startPage(page, size).doSelectPageInfo(() -> articleMapper.selectAllArticle(true));
         if (CollectionUtils.isEmpty(pageInfo.getList())) {
             return new PageInfo<>();
         }

@@ -2,7 +2,6 @@ package com.code.report.blog.serivce.impl;
 
 import com.code.report.blog.infra.util.MinioClientUtil;
 import com.code.report.blog.serivce.FileUploadService;
-import io.minio.MinioClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,6 +1,5 @@
 package com.code.report.blog.controller;
 
-import com.code.report.blog.annotation.VerifyToken;
 import com.code.report.blog.infra.dto.UserDTO;
 import com.code.report.blog.serivce.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

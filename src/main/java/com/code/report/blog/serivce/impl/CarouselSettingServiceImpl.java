@@ -5,7 +5,6 @@ import com.code.report.blog.infra.dto.CarouselSettingDTO;
 import com.code.report.blog.infra.exception.CommonException;
 import com.code.report.blog.infra.mapper.CarouselSettingMapper;
 import com.code.report.blog.serivce.CarouselSettingService;
-import liquibase.pro.packaged.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
