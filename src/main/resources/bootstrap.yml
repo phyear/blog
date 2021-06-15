@@ -1,5 +1,5 @@
 server:
-  port: 10000
+  port: 18000
 spring:
   application:
     name: blog

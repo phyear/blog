@@ -1,26 +1,25 @@
 package com.code.report.blog.infra.dto;
 
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 
 /**
  * @author zhaotianxin
- * @date 2021-01-20 14:44
+ * @date 2021-04-14 11:31
  */
-@Table(name = "system_setting")
-public class SystemSettingDTO {
+@Table(name = "fd_carousel_setting")
+public class CarouselSettingDTO {
     @Id
-    @GeneratedValue(generator  = "JDBC")
+    @GeneratedValue(generator = "JDBC")
     private Long id;
 
-    private String siteName;
+    private String title;
 
-    private String logo;
+    private String url;
 
-    private String introduction;
+    private Boolean enable;
 
     private Date creationDate;
 
@@ -50,27 +49,27 @@ public class SystemSettingDTO {
         this.id = id;
     }
 
-    public String getSiteName() {
-        return siteName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setSiteName(String siteName) {
-        this.siteName = siteName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getLogo() {
-        return logo;
+    public String getUrl() {
+        return url;
     }
 
-    public void setLogo(String logo) {
-        this.logo = logo;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public String getIntroduction() {
-        return introduction;
+    public Boolean getEnable() {
+        return enable;
     }
 
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
     }
 }

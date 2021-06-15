@@ -22,4 +22,10 @@ databaseChangeLog {
             column(name: "last_update_date", type: "DATETIME", defaultValueComputed: "CURRENT_TIMESTAMP")
         }
     }
+
+    changeSet(id: '2021-04-16-system-setting-add-column-introduction', author: 'ztxemail@163.com'){
+        addColumn(tableName: 'system_setting'){
+            column(name: "introduction", type: "varchar(255)", afterColumn: 'logo', remarks: '站点简介')
+        }
+    }
 }

@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    url: ${MYSQL_URL:jdbc:mysql://localhost:3306/blog?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true}
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:12345}
+  liquibase:
+    enabled: true
+  jackson:
+    default-property-inclusion: ALWAYS
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  redis:
+    port: ${REDIS_PORT:6379}
+    host: ${REDIS_HOST:127.0.0.1}
+    database: 12
+mybatis:
+  mapperLocations: classpath*:/mapper/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+mapper:
+  mappers:
+    - tk.mybatis.mapper.common.Mapper
+  not-empty: true
+logging:
+  level:
+    com.code.report.blog: debug
+server:
+  port: 18000
+minio:
+  endPoint: http://127.0.0.1:9000
+  user: minioadmin
+  pass: minioadmin

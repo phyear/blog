@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.code.report.blog.infra.mapper.ArticleMapper">
+    <select id="selectHotArticle" resultType="com.code.report.blog.infra.dto.ArticleDTO">
+       select ta.* from tb_article ta
+       LEFT JOIN tb_article_visits tav ON tav.article_id = ta.id
+       order by tav.like_count desc,tav.visits_count desc,ta.creation_date desc
+       limit 8
+   </select>
+
+   <select id="selectAllArticle" resultType="com.code.report.blog.infra.dto.ArticleDTO">
+       select * from tb_article
+       <if test="odesc">
+           order by creation_date desc
+       </if>
+   </select>
+</mapper>

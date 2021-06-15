@@ -1,5 +1,6 @@
 package com.code.report.blog;
 
+import com.code.report.blog.infra.util.EncryptUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import tk.mybatis.spring.annotation.MapperScan;

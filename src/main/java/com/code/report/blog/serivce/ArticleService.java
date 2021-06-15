@@ -24,4 +24,8 @@ public interface ArticleService {
     PageInfo<ArticleVO> page(int page, int size);
 
     ArticleDTO queryById(Long id);
+
+    List<ArticleDTO> hotArticle();
+
+    ArticleVO query(Long id);
 }

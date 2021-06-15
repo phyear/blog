@@ -6,8 +6,7 @@ import com.code.report.blog.infra.dto.ArticleDTO;
 import com.code.report.blog.serivce.ArticleService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,5 +48,15 @@ public class ArticleController {
     @GetMapping("/{id}")
     public ResponseEntity<ArticleDTO> queryById(@PathVariable(name = "id") Long id){
         return new ResponseEntity<>(articleService.queryById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/hot")
+    public ResponseEntity<List<ArticleDTO>> hotArticle(){
+        return new ResponseEntity<>(articleService.hotArticle(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/query")
+    public ResponseEntity<ArticleVO> query(@PathVariable(name = "id") Long id){
+        return new ResponseEntity<>(articleService.query(id), HttpStatus.OK);
     }
 }
