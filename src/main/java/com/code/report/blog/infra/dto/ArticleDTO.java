@@ -4,7 +4,6 @@ package com.code.report.blog.infra.dto;
 
 
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
@@ -14,7 +13,7 @@ import java.util.Date;
  * @date 2021-01-19 20:11
  */
 @Table(name = "tb_article")
-public class ArticleDTO extends CommonDTO {
+public class ArticleDTO {
     @Id
     @GeneratedValue(generator  = "JDBC")
     private Long id;
@@ -25,11 +24,25 @@ public class ArticleDTO extends CommonDTO {
 
     private String type;
 
-    private Long versionNumber;
-
-    private Date createdDate;
+    private Date creationDate;
 
     private Date lastUpdateDate;
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getLastUpdateDate() {
+        return lastUpdateDate;
+    }
+
+    public void setLastUpdateDate(Date lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
+    }
 
     public String getType() {
         return type;
@@ -61,29 +74,5 @@ public class ArticleDTO extends CommonDTO {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Date getLastUpdateDate() {
-        return lastUpdateDate;
-    }
-
-    public void setLastUpdateDate(Date lastUpdateDate) {
-        this.lastUpdateDate = lastUpdateDate;
-    }
-
-    public Long getVersionNumber() {
-        return versionNumber;
-    }
-
-    public void setVersionNumber(Long versionNumber) {
-        this.versionNumber = versionNumber;
     }
 }

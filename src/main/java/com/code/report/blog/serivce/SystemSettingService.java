@@ -8,4 +8,6 @@ import com.code.report.blog.infra.dto.SystemSettingDTO;
  */
 public interface SystemSettingService {
     SystemSettingDTO selectSetting();
+
+    SystemSettingDTO update(SystemSettingDTO systemSettingDTO);
 }

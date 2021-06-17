@@ -15,11 +15,13 @@ public class ArticleVO {
 
     private String type;
 
-    private Long versionNumber;
-
-    private Date createdDate;
+    private Date creationDate;
 
     private Date lastUpdateDate;
+
+    private Long visitsCount;
+
+    private Long likeCount;
 
     public Long getId() {
         return id;
@@ -53,20 +55,12 @@ public class ArticleVO {
         this.type = type;
     }
 
-    public Long getVersionNumber() {
-        return versionNumber;
+    public Date getCreationDate() {
+        return creationDate;
     }
 
-    public void setVersionNumber(Long versionNumber) {
-        this.versionNumber = versionNumber;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
     public Date getLastUpdateDate() {
@@ -75,5 +69,21 @@ public class ArticleVO {
 
     public void setLastUpdateDate(Date lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
+    }
+
+    public Long getVisitsCount() {
+        return visitsCount;
+    }
+
+    public void setVisitsCount(Long visitsCount) {
+        this.visitsCount = visitsCount;
+    }
+
+    public Long getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(Long likeCount) {
+        this.likeCount = likeCount;
     }
 }

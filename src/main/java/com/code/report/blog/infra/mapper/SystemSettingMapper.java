@@ -9,6 +9,5 @@ import tk.mybatis.mapper.common.Mapper;
  * @date 2021-01-20 15:07
  */
 public interface SystemSettingMapper extends Mapper<SystemSettingDTO> {
-    @Select("select * from system_setting limit 1")
-    SystemSettingDTO selectSettingA();
+   
 }

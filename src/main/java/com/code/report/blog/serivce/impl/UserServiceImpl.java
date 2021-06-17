@@ -20,7 +20,6 @@ import java.util.Objects;
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class UserServiceImpl implements UserService {
-    private static final String AES_KEY = "agdf5634553";
 
     @Autowired
     private UserMapper userMapper;
@@ -33,7 +32,6 @@ public class UserServiceImpl implements UserService {
         if (ObjectUtils.isEmpty(userDTO.getPassword())) {
             throw new CommonException("error.password.is.null");
         }
-//        String pass = AesUtils.decrypt(userDTO.getPassword(), AES_KEY);
         UserDTO userDTO1 = userMapper.selectByLoginName(userDTO.getLoginName());
         if(ObjectUtils.isEmpty(userDTO1)){
             throw new CommonException("error.user.not.exist");

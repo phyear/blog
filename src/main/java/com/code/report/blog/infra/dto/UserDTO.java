@@ -5,13 +5,14 @@ import tk.mybatis.mapper.annotation.Version;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * @author zhaotianxin
  * @date 2021-01-19 20:11
  */
 @Table(name = "fd_user")
-public class UserDTO extends CommonDTO{
+public class UserDTO {
     @Id
     @GeneratedValue(generator  = "JDBC")
     private Long id;
@@ -22,8 +23,25 @@ public class UserDTO extends CommonDTO{
 
     private String password;
 
-    @Version
-    private Long versionNumber;
+    private Date creationDate;
+
+    private Date lastUpdateDate;
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getLastUpdateDate() {
+        return lastUpdateDate;
+    }
+
+    public void setLastUpdateDate(Date lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
+    }
 
     public Long getId() {
         return id;
@@ -55,13 +73,5 @@ public class UserDTO extends CommonDTO{
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Long getVersionNumber() {
-        return versionNumber;
-    }
-
-    public void setVersionNumber(Long versionNumber) {
-        this.versionNumber = versionNumber;
     }
 }

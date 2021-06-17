@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.code.report.blog.infra.mapper.CarouselSettingMapper">
+    <select id="selectByFileter" resultType="com.code.report.blog.infra.dto.CarouselSettingDTO">
+       select * from fd_carousel_setting
+       <where>
+           <if test="filterVO.enable != null">
+              AND  enable = #{filterVO.enable}
+           </if>
+
+           <if test="filterVO.title != null">
+               AND  title like CONCAT(CONCAT('%' ,#{filterVO.title}) ,'%')
+           </if>
+       </where>
+       order by last_update_date desc
+   </select>
+</mapper>
